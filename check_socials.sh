@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="1.0.0"
+VERSION="1.1.0"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -17,6 +17,7 @@ for cmd in curl awk; do
 done
 
 services=(
+    # === СОЦСЕТИ ===
     "Facebook|facebook.com|Соцсеть"
     "Instagram|instagram.com|Соцсеть"
     "X (Twitter)|x.com|Соцсеть"
@@ -35,6 +36,8 @@ services=(
     "Zhihu|zhihu.com|Соцсеть"
     "Nextdoor|nextdoor.com|Соцсеть"
     "Patreon|patreon.com|Соцсеть"
+
+    # === МЕССЕНДЖЕРЫ ===
     "WhatsApp|whatsapp.com|Мессенджер"
     "Telegram|telegram.org|Мессенджер"
     "WeChat|wechat.com|Мессенджер"
@@ -48,6 +51,8 @@ services=(
     "BiP|bip.com|Мессенджер"
     "MAX (RU)|max.ru|Мессенджер"
     "GroupMe|groupme.com|Мессенджер"
+
+    # === ВИДЕОХОСТИНГИ ===
     "YouTube|youtube.com|Видео"
     "TikTok|tiktok.com|Видео"
     "Twitch|twitch.tv|Видео"
@@ -58,6 +63,25 @@ services=(
     "Dzen|dzen.ru|Видео"
     "Smotrim|smotrim.ru|Видео"
     "Netflix|netflix.com|Видео"
+    "Bilibili|bilibili.com|Видео"
+    "Wistia|wistia.com|Видео"
+
+    # === ИИ-ПРИЛОЖЕНИЯ ===
+    "ChatGPT|chatgpt.com|ИИ"
+    "OpenAI|openai.com|ИИ"
+    "Google Gemini|gemini.google.com|ИИ"
+    "Claude (Anthropic)|claude.ai|ИИ"
+    "Microsoft Copilot|copilot.microsoft.com|ИИ"
+    "Midjourney|midjourney.com|ИИ"
+    "Stable Diffusion|stability.ai|ИИ"
+    "DeepSeek|deepseek.com|ИИ"
+    "ElevenLabs|elevenlabs.io|ИИ"
+    "Perplexity AI|perplexity.ai|ИИ"
+    "Cursor|cursor.com|ИИ"
+    "Hugging Face|huggingface.co|ИИ"
+    "Mistral AI|mistral.ai|ИИ"
+    "Grok (xAI)|x.ai|ИИ"
+    "Meta AI|meta.ai|ИИ"
 )
 
 JSON_OUTPUT=false
@@ -113,7 +137,7 @@ for service in "${services[@]}"; do
     if [[ "$http_code" == "000" ]] || [[ -z "$http_code" ]]; then
         status="blocked"
         blocked=$((blocked + 1))
-    elif [[ "$http_code" =~ ^(200|301|302|403)$ ]]; then
+    elif [[ "$http_code" =~ ^(200|301|302|307|308|403)$ ]]; then
         status="available"
         available=$((available + 1))
     else
@@ -140,10 +164,16 @@ for service in "${services[@]}"; do
     fi
 done
 
+if [[ "$ONLY_BLOCKED" == true && "$blocked" -eq 0 ]]; then
+    echo -e "${GREEN}Заблокированных сервисов не найдено — все доступны!${NC}"
+    echo ""
+fi
+
 if [[ "$JSON_OUTPUT" == true ]]; then
     echo "{"
     echo "  \"host\": \"$(hostname)\","
     echo "  \"date\": \"$(date -Iseconds)\","
+    echo "  \"version\": \"$VERSION\","
     echo "  \"total\": $total,"
     echo "  \"available\": $available,"
     echo "  \"blocked\": $blocked,"
