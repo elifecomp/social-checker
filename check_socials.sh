@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="1.1.0"
+VERSION="2.1.0"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -17,64 +17,9 @@ for cmd in curl awk; do
 done
 
 services=(
-    # === СОЦСЕТИ ===
-    "Facebook|facebook.com|Соцсеть"
-    "Instagram|instagram.com|Соцсеть"
-    "X (Twitter)|x.com|Соцсеть"
-    "Reddit|reddit.com|Соцсеть"
-    "Pinterest|pinterest.com|Соцсеть"
-    "LinkedIn|linkedin.com|Соцсеть"
-    "Snapchat|snapchat.com|Соцсеть"
-    "Threads|threads.net|Соцсеть"
-    "Bluesky|bsky.app|Соцсеть"
-    "Mastodon|mastodon.social|Соцсеть"
-    "Tumblr|tumblr.com|Соцсеть"
-    "Douyin|douyin.com|Соцсеть"
-    "Weibo|weibo.com|Соцсеть"
-    "Zhihu|zhihu.com|Соцсеть"
-    "Nextdoor|nextdoor.com|Соцсеть"
-    "Patreon|patreon.com|Соцсеть"
-
-    # === МЕССЕНДЖЕРЫ ===
-    "WhatsApp|whatsapp.com|Мессенджер"
-    "Telegram|telegram.org|Мессенджер"
-    "WeChat|wechat.com|Мессенджер"
-    "Messenger|messenger.com|Мессенджер"
-    "Discord|discord.com|Мессенджер"
-    "Signal|signal.org|Мессенджер"
-    "Viber|viber.com|Мессенджер"
-    "Line|line.me|Мессенджер"
-    "KakaoTalk|kakao.com|Мессенджер"
-    "imo|imo.im|Мессенджер"
-    "BiP|bip.com|Мессенджер"
-    "GroupMe|groupme.com|Мессенджер"
-
-    # === ВИДЕОХОСТИНГИ ===
     "YouTube|youtube.com|Видео"
-    "TikTok|tiktok.com|Видео"
-    "Twitch|twitch.tv|Видео"
-    "Vimeo|vimeo.com|Видео"
-    "Dailymotion|dailymotion.com|Видео"
-    "Netflix|netflix.com|Видео"
-    "Bilibili|bilibili.com|Видео"
-    "Wistia|wistia.com|Видео"
-
-    # === ИИ-ПРИЛОЖЕНИЯ ===
-    "ChatGPT|chatgpt.com|ИИ"
-    "OpenAI|openai.com|ИИ"
-    "Google Gemini|gemini.google.com|ИИ"
-    "Claude (Anthropic)|claude.ai|ИИ"
-    "Microsoft Copilot|copilot.microsoft.com|ИИ"
-    "Midjourney|midjourney.com|ИИ"
-    "Stable Diffusion|stability.ai|ИИ"
-    "DeepSeek|deepseek.com|ИИ"
-    "ElevenLabs|elevenlabs.io|ИИ"
-    "Perplexity AI|perplexity.ai|ИИ"
-    "Cursor|cursor.com|ИИ"
-    "Hugging Face|huggingface.co|ИИ"
-    "Mistral AI|mistral.ai|ИИ"
-    "Grok (xAI)|x.ai|ИИ"
-    "Meta AI|meta.ai|ИИ"
+    "Telegram|telegram.org|Мессенджер"
+    "WhatsApp|whatsapp.com|Мессенджер"
 )
 
 JSON_OUTPUT=false
@@ -159,10 +104,10 @@ for f in "$tmpdir"/*; do
 
         case "$status" in
             available)
-                echo -e "${GREEN}✅ $name${NC} — ДОСТУПЕН"
+                echo -e "${GREEN}✅ $name${NC} — ЕБАТЬ ДОСТУПЕН"
                 ;;
             blocked)
-                echo -e "${RED}❌ $name${NC} — НЕДОСТУПЕН"
+                echo -e "${RED}❌ $name${NC} — ХУЙ НАМ"
                 ;;
         esac
     fi
